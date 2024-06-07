@@ -1,20 +1,3 @@
-# get_wiki_info
-
-- set API_KEY at .env
-
-```
-API_KEY="YOUR_KEY"
-```
-
-- run main.go
-
-```
-$ go run main.go
-```
-
-then, you can see output files in the directory with `Sprint-{sprint number}.txt`
-it contains notification text and wiki url as follows.
-```
 @os_jigyoubu @gr-os-developer @Yuta Horie/GMO-FH @Tsuyoshi Chiba/FH
 
 sp-082は12ポイントを消化しました。
@@ -30,5 +13,3 @@ sp-83(06/11(木) - 06/10(水)は次を対応します:
  実装：OS_SYSTEM-2673 【仕様確定】リニューアルPh3：マネーフォワード申し込みページ (消化済：4Points)
  実装：OS_SYSTEM-3330 【仕様未定】発送登録省力化のためのBO改修
  実装：OS_SYSTEM-3378 【改善】storage_id_viewの取得方法を変える
-
-```
