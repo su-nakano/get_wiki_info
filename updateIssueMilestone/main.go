@@ -1,10 +1,13 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"log"
 	"net/http"
-	"net/url"
+	"os"
+
+	"github.com/joho/godotenv"
 )
 
 type BacklogItem struct {
@@ -16,8 +19,11 @@ type BacklogItem struct {
 // url: /api/v2/projects/:projectIdOrKey/versions/:id
 // method: Patch
 
-func patchIssueMilestone(apiKey string, projectID int, issueID int, milestoneID int) {
-	url := fmt.Sprintf("https://api.backlog.com/api/v2/projects/%d/versions/%d?apiKey=%s", projectID, issueID, apiKey)
+func patchIssueMilestone(apiKey string, issueKey string, milestoneID any) {
+	baseURL := "https://gmo-office.backlog.com/api/v2/issues"
+
+	// Prepare URL with query parameters
+	url := fmt.Sprintf("%s/%d?apiKey=%s", baseURL, issueKey, apiKey)
 
 	// Prepare URL with query parameters
 	req, err := http.NewRequest("PATCH", url, nil)
@@ -32,5 +38,21 @@ func patchIssueMilestone(apiKey string, projectID int, issueID int, milestoneID 
 }
 
 func main() {
-	fmt.Println("Hello, world.")
+	err := godotenv.Load()
+	if err != nil {
+		log.Fatal("Error loading .env file")
+	}
+	apiKey := os.Getenv("API_KEY")
+	issueKey := "197969"
+	milestone := "Review/2024/Sprint-081"
+
+	// update milestones in selected issues
+	wikiPages := patchIssueMilestone(apiKey, issueKey, milestone)
+
+	// Unmarshal the JSON data into an array of Items
+	var items []Item
+	if err := json.Unmarshal([]byte(wikiPages), &items); err != nil {
+		panic(err) // Handle error appropriately in production code
+	}
+
 }

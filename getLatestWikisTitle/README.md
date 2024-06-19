@@ -15,7 +15,7 @@ $ go run main.go
 then, you can see output files in the directory with `Sprint-{sprint number}.txt`
 it contains notification text and wiki url as follows.
 ```
-@os_jigyoubu @gr-os-developer @Yuta Horie/GMO-FH @Tsuyoshi Chiba/FH
+@os_jigyoubu @gr-os-developer @ @
 
 sp-082は12ポイントを消化しました。
 sp-83(06/11(木) - 06/10(水)は次を対応します:
